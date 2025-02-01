@@ -1,18 +1,18 @@
 import tensorflow as tf
-import numpy as np
 from tensorflow.keras import layers, models
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 import matplotlib.pyplot as plt
+import numpy as np
 
 # Параметры
-img_width, img_height = 128, 128  # Размер изображений
+img_width, img_height = 64, 64\  # Размер изображений
 batch_size = 32
 num_classes = 4  # Количество классов (знаков зодиака)
 epochs = 50  # Количество эпох
 
 # Путь к данным
-data_dir = 'zodiac_data'
+data_dir = 'augmented_zodiac_data'
 
 # Аугментация данных
 train_datagen = ImageDataGenerator(
@@ -80,7 +80,7 @@ model.compile(
 # Callbacks
 callbacks = [
     EarlyStopping(monitor='val_loss', patience=10, restore_best_weights=True),  # Ранняя остановка
-    ModelCheckpoint('best_model.keras', monitor='val_loss', save_best_only=True)  # Сохранение лучшей модели
+    ModelCheckpoint('C:/Users/small/PycharmProjects/iilaba2/best_model.keras', monitor='val_loss', save_best_only=True)  # Сохранение лучшей модели
 ]
 
 # Обучение модели
@@ -94,7 +94,7 @@ history = model.fit(
 )
 
 # Сохранение модели
-model.save('zodiac_cnn_model.keras')
+model.save('C:/Users/small/PycharmProjects/iilaba2/zodiac_cnn_model.keras')
 
 # Визуализация результатов обучения
 def plot_training_history(history):
